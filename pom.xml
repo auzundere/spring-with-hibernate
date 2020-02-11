@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.longcreek</groupId>
-	<artifactId>springboot-crud-hibernate-example</artifactId>
+	<artifactId>Postman Application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-crud-hibernate-example</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Postman Application 3rd Eyecam Digital</name>
+	<description>ostman Application 3rd Eyecam Digital to send requests</description>
 
 	<properties>
 		<java.version>1.8</java.version>

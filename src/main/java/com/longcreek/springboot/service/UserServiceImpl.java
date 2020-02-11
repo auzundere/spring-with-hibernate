@@ -1,8 +1,8 @@
 package com.longcreek.springboot.service;
 
 import com.longcreek.springboot.exception.ResourceNotFoundException;
-import com.longcreek.springboot.model.Product;
-import com.longcreek.springboot.repository.ProductRepository;
+import com.longcreek.springboot.model.User;
+import com.longcreek.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,47 +12,47 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService{
+public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private ProductRepository productRepository;
+    private UserRepository productRepository;
 
 
     @Override
-    public Product createProduct(Product product) {
+    public User createProduct(User product) {
         return productRepository.save(product);
     }
 
     @Override
-    public Product updateProduct(Product product) {
-        Optional<Product> productDb = this.productRepository.findById(product.getId());
+    public User updateProduct(User product) {
+        Optional<User> productDb = this.productRepository.findById(product.getId());
 
-        if(productDb.isPresent()){
-            Product productUpdate = productDb.get();
+        if (productDb.isPresent()) {
+            User productUpdate = productDb.get();
             productUpdate.setId(product.getId());
             productUpdate.setName(product.getName());
-            productUpdate.setDescription(product.getDescription());
+            productUpdate.setEmail(product.getEmail());
             productRepository.save(productUpdate);
             return productUpdate;
-        }else{
+        } else {
             throw new ResourceNotFoundException("Record not found with id : " + product.getId());
         }
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return this.productRepository.findAll();
+    public List<User> getAllProducts() {
+        return (List<User>) this.productRepository.findAll();
     }
 
     @Override
-    public Product getProductById(Long productId) {
+    public User getProductById(Long productId) {
 
-        Optional<Product> productDb = this.productRepository.findById(productId);
+        Optional<User> productDb = this.productRepository.findById(productId);
 
-        if(productDb.isPresent()){
+        if (productDb.isPresent()) {
             return productDb.get();
-        }else{
+        } else {
             throw new ResourceNotFoundException("Record not found with id : " + productId);
         }
     }
@@ -60,11 +60,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(Long productId) {
 
-        Optional<Product> productDb = this.productRepository.findById(productId);
+        Optional<User> productDb = this.productRepository.findById(productId);
 
-        if(productDb.isPresent()){
+        if (productDb.isPresent()) {
             this.productRepository.delete(productDb.get());
-        }else{
+        } else {
             throw new ResourceNotFoundException("Record not found with id : " + productId);
         }
     }

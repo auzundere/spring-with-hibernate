@@ -1,9 +1,10 @@
 package com.longcreek.springboot.repository;
 
-import com.longcreek.springboot.model.Product;
+import com.longcreek.springboot.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }
